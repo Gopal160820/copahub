@@ -1,5 +1,5 @@
 from django.db import models
-from ckeditor_uploader.fields import RichTextUploadingField 
+from django_ckeditor_5.fields import CKEditor5Field
 from django.utils.text import slugify
 from django.urls import reverse
 from django.utils.crypto import get_random_string
@@ -41,7 +41,7 @@ class Topic(models.Model):
 
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='topics')
     title = models.CharField(max_length=200)
-    content = RichTextUploadingField() 
+    content = CKEditor5Field('Text', config_name='extends')
     
     # Meta Information
     difficulty = models.CharField(max_length=20, choices=DIFFICULTY_CHOICES, default='Beginner')
